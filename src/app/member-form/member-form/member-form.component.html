@@ -1,1 +1,13 @@
-<p>member-form works!</p>
+<h1>Member Register</h1>
+<form [formGroup]='formGroup'>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput name='name' formControlName='name'>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>DNI</mat-label>
+    <input matInput name='dni' formControlName='dni'>
+  </mat-form-field>
+  <button mat-raised-button (click)='0'>Enviar</button>
+
+</form>

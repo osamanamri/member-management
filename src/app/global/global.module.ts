@@ -5,13 +5,15 @@ import { GlobalRoutingModule } from './global-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { MaterialModule } from '../shared/material/material.module';
 
 
 @NgModule({
   declarations: [HeaderComponent, HomeComponent, NotfoundComponent],
   imports: [
     CommonModule,
-    GlobalRoutingModule
+    GlobalRoutingModule,
+    MaterialModule
   ],
   exports: [HeaderComponent, HomeComponent, NotfoundComponent]
 })

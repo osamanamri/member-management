@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MemberManagementModule } from './member-management/member-management.module';
 import { MemberFormModule } from './member-form/member-form.module';
+import { GlobalModule } from './global/global.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MemberFormModule } from './member-form/member-form.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    GlobalModule,
     MemberFormModule,
     MemberManagementModule
   ],
