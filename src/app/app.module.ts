@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MemberManagementModule } from './member-management/member-management.module';
+import { MemberFormModule } from './member-form/member-form.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MemberFormModule,
+    MemberManagementModule
   ],
   providers: [],
   bootstrap: [AppComponent]
