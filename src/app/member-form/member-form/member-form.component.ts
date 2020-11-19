@@ -9,6 +9,7 @@ import { Member } from '../../shared/classes/member';
 })
 export class MemberFormComponent implements OnInit {
 
+  member: Member;
   @Input() formGroup: FormGroup;
 
   @Output() enviar = new EventEmitter<Member>();
@@ -19,6 +20,11 @@ export class MemberFormComponent implements OnInit {
   ngOnInit(): void {
   }
   saveRecord(){
-    this.enviar.emit(this.formGroup.value);
+
+    this.member = new Member();
+    this.member.name = this.formGroup.get('name').value;
+    this.member.dni = this.formGroup.get('dni').value;
+
+    this.enviar.emit(this.member);
   }
 }

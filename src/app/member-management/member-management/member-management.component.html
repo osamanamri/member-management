@@ -1,5 +1,8 @@
 <app-member-form
     [formGroup]='formGroup'
-></app-member-form>
+    (enviar)='recibir($event)'>
+ </app-member-form>
 <p>member-management works!</p>
-<app-member-list></app-member-list>
+<app-member-list
+     [members]='members'>
+</app-member-list>
