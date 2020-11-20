@@ -1,5 +1,5 @@
 import { Member } from '../../shared/classes/member';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-member-list',
@@ -8,10 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MemberListComponent implements OnInit {
 @Input() members: Member[];
+@Output() delete = new EventEmitter<Member>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteRecord(member){
+    this.delete.emit(member);
   }
 
 }

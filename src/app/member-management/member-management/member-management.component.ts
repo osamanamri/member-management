@@ -27,4 +27,10 @@ export class MemberManagementComponent implements OnInit {
     this.members.push(member);
   }
 
+  delete(member){
+
+    this.members.splice(this.members.findIndex(e=> e.dni == member.dni),1)
+
+  }
+
 }

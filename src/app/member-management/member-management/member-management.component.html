@@ -4,5 +4,6 @@
  </app-member-form>
 <p>member-management works!</p>
 <app-member-list
-     [members]='members'>
+     [members]='members'
+     (delete)='delete($event)'>
 </app-member-list>
