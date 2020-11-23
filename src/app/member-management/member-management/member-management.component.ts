@@ -29,7 +29,7 @@ export class MemberManagementComponent implements OnInit {
     console.log(member);
     this.formGroup = this.fb.group({
       name: [member?.name, Validators.required],
-      dni:  [member?.dni,  [Validators.required, this.validateDni]]
+      dni:  [member?.dni,  [Validators.required, this.validateDni.bind(this)]]
     });
   }
 
@@ -69,11 +69,15 @@ export class MemberManagementComponent implements OnInit {
   private validateDni(control: AbstractControl){
 
     const dni = control.value;
+    console.log(control.errors);
     let error = null;
-    if(this.members.findIndex(e=>e.dni == dni))
-     error='duplicate DNI';
 
-     return error;
-
+    // if (control.touched || control.dirty)
+    // {
+    if(this.members.findIndex(e=>e.dni == dni)>=0){
+    error = { ...error, 'duplicate':'duplicate dni' };
+    return error;
+    // }
   }
+}
 }

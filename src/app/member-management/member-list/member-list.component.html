@@ -1,7 +1,19 @@
-<div *ngFor='let member of members'>
+<!-- <div *ngFor='let member of members'>
   <p>{{member.name}}</p>
   <p>{{member.dni}}</p>
   <button (click)='deleteRecord(member)'>Delete</button>
   <button (click)='editRecord(member)'>Edit</button>
 </div>
+
+ -->
+
+
+ <mat-card class='container-list' *ngFor="let member of members">
+  <p>{{member.name}}</p>
+  <p>{{member.dni}}</p>
+  <div class='icon'>
+  <button mat-icon-button matSuffix (click)='  editRecord(member)'><mat-icon color='primary'>edit</mat-icon></button>
+  <button mat-icon-button matSuffix (click)='deleteRecord(member)'><mat-icon color='warn'>delete</mat-icon></button>
+  </div>
+</mat-card>
 

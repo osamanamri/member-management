@@ -31,8 +31,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatToolbarModule,
     MatMenuModule,
-    MatDividerModule
-     ],
+    MatDividerModule,
+    MatIconModule],
   exports: [
     MatButtonModule,
     MatSidenavModule,
@@ -45,7 +45,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatToolbarModule,
     MatMenuModule,
-    MatDividerModule]
+    MatDividerModule,
+  MatIconModule]
 
 })
 export class MaterialModule { }

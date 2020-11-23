@@ -4,6 +4,7 @@ import { MemberManagementComponent } from './member-management/member-management
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberFormModule } from '../member-form/member-form.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../shared/material/material.module';
 
 
 
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MemberFormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [MemberManagementComponent]
 })

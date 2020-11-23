@@ -1,0 +1,31 @@
+:host{
+  width: 100%;
+  margin:1rem;
+}
+
+  .container-list{
+    // width: 100%;
+    box-sizing: border-box;
+    margin-top:10px;
+    margin-left: 1rem;
+    margin-right:1rem;
+    // border: 1px solid gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+    p{
+      margin-left:0.8vw;
+      width: 40%;
+      // align-self: baseline;
+      // padding: 1rem;
+
+    }
+
+    .icon{
+      width: 5%;
+
+    }
+  }
+
