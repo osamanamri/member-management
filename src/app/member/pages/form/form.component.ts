@@ -11,7 +11,9 @@ import { Member } from '../../interfaces/member';
 export class FormComponent implements OnInit {
 
   member: Member;
-  @Input() formGroup: FormGroup;
+  @Input() formGroup:  FormGroup;
+  @Input() 'caret':    string;
+  @Input() 'readonly': boolean;
 
   @Output() enviar = new EventEmitter<Member>();
 

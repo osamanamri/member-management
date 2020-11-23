@@ -13,6 +13,8 @@ export class MemberComponent implements OnInit {
 
   formGroup: FormGroup;
   members: Member[];
+  readonly:boolean;
+  caret: string;
 
   constructor(private fb: FormBuilder,
               private memberService:   MemberService,
@@ -21,6 +23,8 @@ export class MemberComponent implements OnInit {
   ngOnInit(): void {
     this.members = this.memberService.read();
     this.createForm();
+    this.caret = 'enviar';
+    this.readonly = false;
   }
 
   createForm(member:Member = {}) {
@@ -37,6 +41,8 @@ export class MemberComponent implements OnInit {
 
   sendToForm(member) {
     this.createForm(member);
+    this.caret = 'editar';
+    this.readonly = true;
   }
 
   recibir(member) {
@@ -50,6 +56,8 @@ export class MemberComponent implements OnInit {
     }
 
     this.reset();
+    this.caret = 'enviar';
+    this.readonly =false;
   }
 
   erase(member) {

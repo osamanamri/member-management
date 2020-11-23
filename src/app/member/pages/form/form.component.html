@@ -3,10 +3,15 @@
   <mat-form-field>
     <mat-label>Name</mat-label>
     <input matInput name='name' formControlName='name'>
+    <mat-error *ngIf='formGroup.controls.name.errors?.required'>campo obligatorio</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>DNI</mat-label>
-    <input matInput name='dni' formControlName='dni'>
+    <input matInput name='dni' formControlName='dni' [readonly]='readonly'>
+    <mat-error *ngIf='formGroup.controls.dni.errors'>
+      <mat-error>{{formGroup.controls.dni.errors | json}}</mat-error>
+
+    </mat-error>
   </mat-form-field>
   <button mat-raised-button [disabled]='formGroup.invalid' (click)='saveRecord()'>Enviar</button>
 
