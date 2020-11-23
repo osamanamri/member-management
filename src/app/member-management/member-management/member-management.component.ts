@@ -13,37 +13,46 @@ export class MemberManagementComponent implements OnInit {
   formGroup: FormGroup;
   members: Member[];
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.members = members;
-/*     this.formGroup = this.fb.group({
-      name:'',
-      dni:''
-    })
- */
+    /*     this.formGroup = this.fb.group({
+          name:'',
+          dni:''
+        })
+     */
     this.createForm();
-}
+  }
 
-  createForm(member={}){
+  createForm(member = { name: '', dni: '' }) {
     this.formGroup = this.fb.group(member);
   }
-  sendToForm(member){
+
+  sendToForm(member) {
     this.createForm(member);
   }
 
-  recibir(member){
+  recibir(member) {
+    if (members.findIndex(e => e.dni == member.dni) == -1) {
+      this.add(member);
+    } else {
+      this.edit(member);
+    }
+  }
+
+  add(member) {
     this.members.push(member);
   }
 
-  delete(member){
+  delete(member) {
 
-    this.members.splice(this.members.findIndex(e=> e.dni == member.dni),1)
+    this.members.splice(this.members.findIndex(e => e.dni == member.dni), 1)
 
   }
 
-  edit(member){
-    this.members.splice(this.members.findIndex(e=> e.dni == member.dni),1,member)
+  edit(member) {
+    this.members.splice(this.members.findIndex(e => e.dni == member.dni), 1, member)
   }
 
 }
