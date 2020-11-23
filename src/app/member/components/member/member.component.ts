@@ -1,7 +1,8 @@
-import { members } from '../../data/members';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Member } from '../../interfaces/member';
+import { MemberService } from '../../services/member.service';
+import { MemberValidator } from './../../services/member.validator';
 
 @Component({
   selector: 'app-member',
@@ -13,15 +14,12 @@ export class MemberComponent implements OnInit {
   formGroup: FormGroup;
   members: Member[];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private memberService:   MemberService,
+              private memberValidator: MemberValidator) { }
 
   ngOnInit(): void {
-    this.members = members;
-    /*     this.formGroup = this.fb.group({
-          name:'',
-          dni:''
-        })
-     */
+    this.members = this.memberService.read();
     this.createForm();
   }
 
@@ -29,7 +27,7 @@ export class MemberComponent implements OnInit {
     console.log(member);
     this.formGroup = this.fb.group({
       name: [member?.name, Validators.required],
-      dni:  [member?.dni,  [Validators.required, this.validateDni.bind(this)]]
+      dni:  [member?.dni,  [Validators.required, this.memberValidator.validateDni.bind(this)]]
     });
   }
 
@@ -42,42 +40,20 @@ export class MemberComponent implements OnInit {
   }
 
   recibir(member) {
-    if (members.findIndex(e => e.dni == member.dni) == -1) {
-      this.add(member);
+    if (!this.memberService.find(member.dni)) {
+
+      this.memberService.create(member);
+
     } else {
-      this.edit(member);
+
+      this.memberService.update(member);
     }
 
     this.reset();
   }
 
-  add(member) {
-
-    this.members.push(member);
+  erase(member) {
+    this.memberService.delete(member);
   }
 
-  delete(member) {
-
-    this.members.splice(this.members.findIndex(e => e.dni == member.dni), 1)
-
-  }
-
-  edit(member) {
-    this.members.splice(this.members.findIndex(e => e.dni == member.dni), 1, member)
-  }
-
-  private validateDni(control: AbstractControl){
-
-    const dni = control.value;
-    console.log(control.errors);
-    let error = null;
-
-    // if (control.touched || control.dirty)
-    // {
-    if(this.members.findIndex(e=>e.dni == dni)>=0){
-    error = { ...error, 'duplicate':'duplicate dni' };
-    return error;
-    // }
-  }
-}
 }

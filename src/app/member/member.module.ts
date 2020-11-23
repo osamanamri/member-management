@@ -5,6 +5,7 @@ import { FormComponent } from './pages/form/form.component';
 import { ListComponent } from './pages/list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
+//import { MemberService } from './services/member.service';
 
 
 
@@ -14,6 +15,7 @@ import { MaterialModule } from '../shared/material/material.module';
     CommonModule,
     ReactiveFormsModule,
     MaterialModule
-  ]
+  ]/* ,
+  providers:[MemberService] */
 })
 export class MemberModule { }
