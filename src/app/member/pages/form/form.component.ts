@@ -1,14 +1,14 @@
 import { FormGroup } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Member } from '../../shared/interfaces/member';
+import { Member } from '../../interfaces/member';
 
 
 @Component({
-  selector: 'app-member-form',
-  templateUrl: './member-form.component.html',
-  styleUrls: ['./member-form.component.scss']
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
 })
-export class MemberFormComponent implements OnInit {
+export class FormComponent implements OnInit {
 
   member: Member;
   @Input() formGroup: FormGroup;
@@ -30,7 +30,7 @@ export class MemberFormComponent implements OnInit {
       name: this.formGroup.get('name').value,
       dni : this.formGroup.get('dni').value
     }
-    
+
     this.enviar.emit(this.member);
   }
 }

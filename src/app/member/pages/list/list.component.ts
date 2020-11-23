@@ -1,12 +1,12 @@
-import { Member } from '../../shared/interfaces/member';
+import { Member } from '../../interfaces/member';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-member-list',
-  templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.scss']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
-export class MemberListComponent implements OnInit {
+export class ListComponent implements OnInit {
 @Input() members: Member[];
 @Output() delete = new EventEmitter<Member>();
 @Output() edit = new EventEmitter<Member>();

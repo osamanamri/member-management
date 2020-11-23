@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "member-management": {
+    "member": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/member-management",
+            "outputPath": "dist/member",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -89,18 +89,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "member-management:build"
+            "browserTarget": "member:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "member-management:build:production"
+              "browserTarget": "member:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "member-management:build"
+            "browserTarget": "member:build"
           }
         },
         "test": {
@@ -138,16 +138,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "member-management:serve"
+            "devServerTarget": "member:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "member-management:serve:production"
+              "devServerTarget": "member:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "member-management"
+  "defaultProject": "member"
 }

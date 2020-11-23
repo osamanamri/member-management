@@ -1,14 +1,14 @@
-import { members } from './../../shared/data/members';
+import { members } from '../../data/members';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Member } from 'src/app/shared/interfaces/member';
+import { Member } from '../../interfaces/member';
 
 @Component({
-  selector: 'app-member-management',
-  templateUrl: './member-management.component.html',
-  styleUrls: ['./member-management.component.scss']
+  selector: 'app-member',
+  templateUrl: './member.component.html',
+  styleUrls: ['./member.component.scss']
 })
-export class MemberManagementComponent implements OnInit {
+export class MemberComponent implements OnInit {
 
   formGroup: FormGroup;
   members: Member[];

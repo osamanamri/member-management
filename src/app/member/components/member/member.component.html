@@ -1,10 +1,10 @@
-<app-member-form
+<app-form
     [formGroup]='formGroup'
     (enviar)='recibir($event)'>
- </app-member-form>
+ </app-form>
 <mat-divider></mat-divider>
-<app-member-list
+<app-list
      [members]='members'
      (delete)='delete($event)'
      (edit) = 'sendToForm($event)'>
-</app-member-list>
+</app-list>
