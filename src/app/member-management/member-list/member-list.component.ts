@@ -9,6 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class MemberListComponent implements OnInit {
 @Input() members: Member[];
 @Output() delete = new EventEmitter<Member>();
+@Output() edit = new EventEmitter<Member>();
 
   constructor() { }
 
@@ -17,6 +18,10 @@ export class MemberListComponent implements OnInit {
 
   deleteRecord(member){
     this.delete.emit(member);
+  }
+
+  editRecord(member){
+    this.edit.emit(member);
   }
 
 }

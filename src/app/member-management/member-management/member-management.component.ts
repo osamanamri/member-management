@@ -17,10 +17,19 @@ export class MemberManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.members = members;
-    this.formGroup = this.fb.group({
-      name:'John',
-      dni:'1234567'
+/*     this.formGroup = this.fb.group({
+      name:'',
+      dni:''
     })
+ */
+    this.createForm();
+}
+
+  createForm(member={}){
+    this.formGroup = this.fb.group(member);
+  }
+  sendToForm(member){
+    this.createForm(member);
   }
 
   recibir(member){
@@ -31,6 +40,10 @@ export class MemberManagementComponent implements OnInit {
 
     this.members.splice(this.members.findIndex(e=> e.dni == member.dni),1)
 
+  }
+
+  edit(member){
+    this.members.splice(this.members.findIndex(e=> e.dni == member.dni),1,member)
   }
 
 }
