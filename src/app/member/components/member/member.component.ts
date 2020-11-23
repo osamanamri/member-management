@@ -21,7 +21,7 @@ export class MemberComponent implements OnInit {
               private memberValidator: MemberValidator) { }
 
   ngOnInit(): void {
-    this.members = this.memberService.read();
+    this.memberService.read$().subscribe(members => this.members = members);
     this.createForm();
     this.caret = 'enviar';
     this.readonly = false;

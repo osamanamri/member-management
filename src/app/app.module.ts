@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MemberModule } from './member/member.module';
 import { GlobalModule } from './global/global.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
