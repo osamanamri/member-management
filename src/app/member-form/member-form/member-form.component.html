@@ -8,6 +8,6 @@
     <mat-label>DNI</mat-label>
     <input matInput name='dni' formControlName='dni'>
   </mat-form-field>
-  <button mat-raised-button (click)='saveRecord()'>Enviar</button>
+  <button mat-raised-button [disabled]='formGroup.invalid' (click)='saveRecord()'>Enviar</button>
 
 </form>

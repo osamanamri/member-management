@@ -1,6 +1,7 @@
 import { FormGroup } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Member } from '../../shared/classes/member';
+import { Member } from '../../shared/interfaces/member';
+
 
 @Component({
   selector: 'app-member-form',
@@ -21,10 +22,15 @@ export class MemberFormComponent implements OnInit {
   }
   saveRecord(){
 
-    this.member = new Member();
-    this.member.name = this.formGroup.get('name').value;
+    // this.member = new Member();
+    /* this.member.name = this.formGroup.get('name').value;
     this.member.dni = this.formGroup.get('dni').value;
-
+ */
+    this.member = {
+      name: this.formGroup.get('name').value,
+      dni : this.formGroup.get('dni').value
+    }
+    
     this.enviar.emit(this.member);
   }
 }

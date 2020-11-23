@@ -1,6 +1,6 @@
 import { members } from './../../shared/data/members';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Member } from 'src/app/shared/interfaces/member';
 
 @Component({
@@ -25,8 +25,16 @@ export class MemberManagementComponent implements OnInit {
     this.createForm();
   }
 
-  createForm(member = { name: '', dni: '' }) {
-    this.formGroup = this.fb.group(member);
+  createForm(member:Member = {}) {
+    console.log(member);
+    this.formGroup = this.fb.group({
+      name: [member?.name, Validators.required],
+      dni:  [member?.dni,  [Validators.required, this.validateDni]]
+    });
+  }
+
+  reset():void{
+    this.formGroup.reset();
   }
 
   sendToForm(member) {
@@ -39,9 +47,12 @@ export class MemberManagementComponent implements OnInit {
     } else {
       this.edit(member);
     }
+
+    this.reset();
   }
 
   add(member) {
+
     this.members.push(member);
   }
 
@@ -55,4 +66,14 @@ export class MemberManagementComponent implements OnInit {
     this.members.splice(this.members.findIndex(e => e.dni == member.dni), 1, member)
   }
 
+  private validateDni(control: AbstractControl){
+
+    const dni = control.value;
+    let error = null;
+    if(this.members.findIndex(e=>e.dni == dni))
+     error='duplicate DNI';
+
+     return error;
+
+  }
 }

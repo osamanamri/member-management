@@ -1,4 +1,4 @@
-import { Member } from '../../shared/classes/member';
+import { Member } from '../../shared/interfaces/member';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
