@@ -51,10 +51,9 @@ export class MemberComponent implements OnInit, OnDestroy {
 
   recibir(member) {
 
-    this.memberService.find$(member).subscribe(member => this.member = member,
-                            (error)=>{this.error = error; console.log(error)});
-      console.log(this.error);
-    if (this.error) {
+    this.memberService.find$(member).subscribe(member => this.member = member);
+/*       console.log(this.error); */
+    if (this.member) {
 
       /* this.subscription = */ this.memberService.create$(member);//.subscribe(console.log);
 

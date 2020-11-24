@@ -1,4 +1,4 @@
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -26,10 +26,13 @@ export class MemberService {
     return this.refreshToken$.pipe(switchMap(()=> this.http.get<Member[]>(this.url)));
   }
 
-  find$(member):Observable<Member>{
+  find$(member):Observable<any>{
     console.log(member);
+
+    return this.read$().pipe(
+      map(arr=> arr.map(e=>e.dni).includes(member.dni)));
     //if(member.id===null) member.id='0';
-    return this.http.get(this.url+'/'+member?.id)/* .pipe(
+ /*   return this.http.get(this.url+'/'+member?.id) .pipe(
       catchError(error => {console.log(error)
                            return throwError(error)})) */
 
