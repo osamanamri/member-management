@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Member } from '../../interfaces/member';
 import { MemberService } from '../../services/member.service';
 import { MemberValidator } from './../../services/member.validator';
@@ -9,8 +10,9 @@ import { MemberValidator } from './../../services/member.validator';
   templateUrl: './member.component.html',
   styleUrls: ['./member.component.scss']
 })
-export class MemberComponent implements OnInit {
+export class MemberComponent implements OnInit, OnDestroy {
 
+  subscription: Subscription;
   formGroup: FormGroup;
   members: Member[];
   readonly:boolean;
@@ -21,7 +23,7 @@ export class MemberComponent implements OnInit {
               private memberValidator: MemberValidator) { }
 
   ngOnInit(): void {
-    this.members = this.memberService.read();
+    this.memberService.read$().subscribe(members => this.members = members);
     this.createForm();
     this.caret = 'enviar';
     this.readonly = false;
@@ -30,6 +32,7 @@ export class MemberComponent implements OnInit {
   createForm(member:Member = {}) {
     console.log(member);
     this.formGroup = this.fb.group({
+      id:   [member?.id],
       name: [member?.name, Validators.required],
       dni:  [member?.dni,  [Validators.required, this.memberValidator.validateDni.bind(this)]]
     });
@@ -48,20 +51,25 @@ export class MemberComponent implements OnInit {
   recibir(member) {
     if (!this.memberService.find(member.dni)) {
 
-      this.memberService.create(member);
+      this.subscription = this.memberService.create$(member).subscribe(console.log);
 
     } else {
 
-      this.memberService.update(member);
+      this.subscription = this.memberService.update$(member);
     }
 
     this.reset();
     this.caret = 'enviar';
     this.readonly =false;
+    this.subscription.unsubscribe();
   }
 
   erase(member) {
     this.memberService.delete(member);
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 }

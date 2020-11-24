@@ -1,6 +1,7 @@
 <h1>Member Register</h1>
 <form [formGroup]='formGroup'>
   <mat-form-field>
+    <input type='hidden' name='id' formControlName='id'>
     <mat-label>Name</mat-label>
     <input matInput name='name' formControlName='name'>
     <mat-error *ngIf='formGroup.controls.name.errors?.required'>campo obligatorio</mat-error>

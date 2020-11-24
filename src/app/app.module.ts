@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -17,7 +18,8 @@ import { GlobalModule } from './global/global.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     GlobalModule,
-    MemberModule
+    MemberModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

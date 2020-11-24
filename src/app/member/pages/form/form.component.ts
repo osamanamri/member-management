@@ -29,6 +29,7 @@ export class FormComponent implements OnInit {
     this.member.dni = this.formGroup.get('dni').value;
  */
     this.member = {
+      id: this.formGroup.get('id').value,
       name: this.formGroup.get('name').value,
       dni : this.formGroup.get('dni').value
     }
