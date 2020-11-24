@@ -17,10 +17,10 @@ export class MemberValidator {
 
      if (control.touched || control.dirty)
      {
-    if(this.memberService.find(dni)){
+/*     if(this.memberService.find(dni)){
     error = { ...error, 'duplicate':'duplicate dni' };
     return error;
-     }
+     } */
   }
 }
 

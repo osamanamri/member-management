@@ -15,9 +15,10 @@ export class MemberComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   formGroup: FormGroup;
   members: Member[];
+  member:Member={};
   readonly:boolean;
   caret: string;
-
+  error: any;
   constructor(private fb: FormBuilder,
               private memberService:   MemberService,
               private memberValidator: MemberValidator) { }
@@ -34,7 +35,7 @@ export class MemberComponent implements OnInit, OnDestroy {
     this.formGroup = this.fb.group({
       id:   [member?.id],
       name: [member?.name, Validators.required],
-      dni:  [member?.dni,  [Validators.required, this.memberValidator.validateDni.bind(this)]]
+      dni:  [member?.dni,  [Validators.required/* , this.memberValidator.validateDni.bind(this) */]]
     });
   }
 
@@ -49,27 +50,32 @@ export class MemberComponent implements OnInit, OnDestroy {
   }
 
   recibir(member) {
-    if (!this.memberService.find(member.dni)) {
 
-      this.subscription = this.memberService.create$(member).subscribe(console.log);
+    this.memberService.find$(member).subscribe(member => this.member = member,
+                            (error)=>{this.error = error; console.log(error)});
+      console.log(this.error);
+    if (this.error) {
+
+      /* this.subscription = */ this.memberService.create$(member);//.subscribe(console.log);
 
     } else {
 
-      this.subscription = this.memberService.update$(member);
+      /* this.subscription = */ this.memberService.update$(member);//.subscribe(console.log);
     }
 
     this.reset();
     this.caret = 'enviar';
     this.readonly =false;
-    this.subscription.unsubscribe();
+/*     this.subscription.unsubscribe(); */
+    this.memberService.find$(member).subscribe(member => this.member = member).unsubscribe();
   }
 
   erase(member) {
-    this.memberService.delete(member);
+      /* this.subscription = */this.memberService.delete$(member);//.subscribe(console.log);
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    /* this.subscription.unsubscribe(); */
   }
 
 }
